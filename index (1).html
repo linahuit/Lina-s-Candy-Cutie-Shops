@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lina's Candy Cutie Shop</title>
+
+ <link rel="stylesheet" href="style.css">
+ <link rel="script" href="script.js">
+</head>
+
+<body>
+  <header>
+    <nav class="navbar">
+      
+      <ul class="nav-links">
+        <li><img class="nav-logo" src="https://i.pinimg.com/originals/2b/60/77/2b60777dee31576ae59dcb250503c11b.png" alt="logo"></li>
+        <li><a href="#" class="nav-link">HOME</a></li>
+        <li><a href="#cart" class="nav-link">PRODUCTS</a></li>
+        <li><a href="#cart" class="nav-link">CART</a></li>
+        <li><a href="#contact" class="nav-link">CONTACT</a></li>
+        <li><a href="#about" class="nav-link">ABOUT US</a></li>
+        <!-- Added "About Us" button -->
+      </ul>
+    </nav>
+  </header>
+  
+
+  </footer>
+  
+
+  <main>
+    <div class="hero">
+      <img class="tagline"
+        src="https://see.fontimg.com/api/renderfont4/6Yweq/eyJyIjoiZnMiLCJoIjo5MCwidyI6MTI1MCwiZnMiOjcyLCJmZ2MiOiIjRTUyM0RDIiwiYmdjIjoiI0ZERjdGNyIsInQiOjF9/VGhlIFN3ZWV0ZXN0IFlvdSd2ZSBUYXN0ZWQgWWV0/candy-potato.png"
+        alt="Tagline">
+    </div>
+    <section id="about" class="about-section">
+      <div class="about-container">
+        <h2>About Us</h2>
+        <p>Welcome to Lina's Candy Cutie Shop! We are a candy store dedicated to bringing you the sweetest treats and delights. Our passion for candies and confections led us to curate a wide range of products that will satisfy every sweet tooth.</p>
+        <p>At Lina's Candy Cutie Shop, we believe that happiness can be found in a simple candy. Our goal is to spread joy and bring smiles to people's faces with our delightful collection of lollipops, chocolates, gummy worms, and more.</p>
+        <p>Explore our selection of candies and indulge in the magic of sweetness. Whether you're looking for a treat for yourself or a gift for a loved one, we have something for everyone. Place your order today and experience the wonder of Lina's Candy Cutie Shop!</p>
+      </div>
+    </section>
+    <div id="products-container" class="products-container">
+      <div class="product">
+        <img class="product-img" src="https://cdn.shopify.com/s/files/1/0474/0038/6728/products/Tutti_Frutty_1200x.jpg?v=1654755152" alt="Product Image">
+        <div class="item">
+          <h3 class="item-title">Lollipop</h3>
+          <p class="item-price">₱250</p>
+          <h2 class="description">Tasty lollipops available rainbow color.</h2>
+          <button class="add-to-cart">Add to Cart</button>
+        </div>
+      </div>
+ 
+      
+      <div class="product">
+        <img class="product-img" src="https://www.ferrerorocher.com/us/sites/ferrerorocher20_us/files/2022-08/categorycarousel_mobile_684x684.png?t=1673258984" alt="Product Image">
+        <div class="item">
+          <h3 class="item-title">Chocolate</h3>
+          <p class="item-price">₱300</p>
+          <h2 class="description">Premium quality chocolate bars for the ultimate indulgence.</h2>
+          <button class="add-to-cart">Add to Cart</button>
+        </div>
+      </div>
+      
+      
+      <div class="product">
+        <img class="product-img" src="https://ipcdn.freshop.com/resize?url=https://images.freshop.com/1564405684702504235/35a1c4a294c9f2336b9dc49ddcc01d82_large.png&width=512&type=webp&quality=90" alt="Product Image">
+        <div class="item">
+          <h3 class="item-title">Gummy Worms</h3>
+          <p class="item-price">₱150</p>
+          <h2 class="description">Delicious gummy worms in various fruity flavors.</h2>
+          <button class="add-to-cart">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+      
+
+    <div id="cart" class="cart">
+      <h2>Cart</h2>
+      <ul class="cart-items"></ul>
+      <p class="total">Total: ₱0.00</p>
+      <button class="checkout">Checkout</button>
+    </div>
+
+    <div class="overlay">
+      <div class="checkout-form">
+        <h2>Checkout</h2>
+        <form>
+          <label for="name">Name:</label>
+          <input type="text" id="name" required>
+          <br>
+          <label for="email">Email:</label>
+          <input type="email" id="email" required>
+          <br>
+          <label for="address">Address:</label>
+          <input type="text" id="address" required>
+          <br>
+          <input type="submit" value="Place Order">
+          <button class="cancel">Cancel</button>
+        </form>
+      </div>
+    </div>
+
+  </main>
+
+  <footer id="contact">
+    <p>Lina's Candy Cutie Shop</p>
+    <p>candycutieshop@gmail.com</p>
+    <p>0912-345-6789</p>
+    <p>&copy; 2023 Lina's Candy Cutie Shop</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    class ShoppingCart {
+    constructor() {
+      this.cart = [];
+      this.addToCartButtons = document.querySelectorAll(".add-to-cart");
+      this.cartItems = document.querySelector(".cart-items");
+      this.totalElement = document.querySelector(".total");
+      this.checkoutButton = document.querySelector(".checkout");
+      this.overlay = document.querySelector(".overlay");
+      this.checkoutForm = document.querySelector(".checkout-form");
+      this.cancelButton = document.querySelector(".cancel");
+  
+      this.initialize();
+    }
+  
+    initialize() {
+      this.addToCartButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          this.addToCart(button);
+        });
+      });
+  
+      this.checkoutButton.addEventListener("click", () => {
+        this.showCheckoutForm();
+      });
+  
+      this.checkoutForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        this.processCheckout();
+      });
+  
+      this.cancelButton.addEventListener("click", () => {
+        this.hideCheckoutForm();
+      });
+    }
+  
+    addToCart(button) {
+      const product = button.parentNode;
+      const title = product.querySelector(".item-title").textContent;
+      const price = parseFloat(product.querySelector(".item-price").textContent.slice(1));
+  
+      const existingItem = this.cart.find((item) => item.title === title);
+  
+      if (existingItem) {
+        existingItem.quantity++;
+        existingItem.total += price;
+      } else {
+        const item = {
+          title: title,
+          price: price,
+          quantity: 1,
+          total: price,
+        };
+        this.cart.push(item);
+      }
+  
+      this.updateCart();
+    }
+  
+    updateCart() {
+      this.cartItems.innerHTML = "";
+      let cartTotal = 0;
+  
+      this.cart.forEach((item) => {
+        const cartItem = document.createElement("li");
+        cartItem.textContent = `${item.title} (Quantity: ${item.quantity}) - ₱${item.total.toFixed(2)}`;
+  
+        const removeButton = document.createElement("button");
+        removeButton.className = "remove-button";
+        removeButton.textContent = "Remove";
+        removeButton.addEventListener("click", () => {
+          this.removeItemFromCart(item);
+        });
+  
+        cartItem.appendChild(removeButton);
+        this.cartItems.appendChild(cartItem);
+        cartTotal += item.total;
+      });
+  
+      this.totalElement.textContent = `₱${cartTotal.toFixed(2)}`;
+    }
+  
+    removeItemFromCart(item) {
+      const itemIndex = this.cart.findIndex((cartItem) => cartItem.title === item.title);
+      if (itemIndex !== -1) {
+        this.cart.splice(itemIndex, 1);
+        this.updateCart();
+      }
+    }
+  
+    showCheckoutForm() {
+      this.overlay.style.display = "flex";
+    }
+  
+    hideCheckoutForm() {
+      this.overlay.style.display = "none";
+    }
+  
+    processCheckout() {
+      const name = document.querySelector("#name").value;
+      const email = document.querySelector("#email").value;
+      const address = document.querySelector("#address").value;
+  
+      if (name && email && address) {
+        // Perform checkout logic here, e.g., send order details to a server
+        alert("Order placed successfully!");
+        this.cart = [];
+        this.updateCart();
+        this.hideCheckoutForm();
+      } else {
+        alert("Please fill in all the fields.");
+      }
+    }
+  }
+  
+  document.addEventListener("DOMContentLoaded", function () {
+    new ShoppingCart();
+  });
+  </script>
+</body>
+
+</html>
